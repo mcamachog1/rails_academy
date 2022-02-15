@@ -1,0 +1,5 @@
+<%= form_with do |form| %>
+
+Aqui va el formulario
+
+<% end %>

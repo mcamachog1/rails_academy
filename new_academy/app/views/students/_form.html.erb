@@ -1,0 +1,57 @@
+<%= form_with(model: student) do |form| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+        <% student.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :college %>
+    <%= form.text_field :college %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.number_field :year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mobile %>
+    <%= form.text_field :mobile %>
+  </div>
+
+  
+  <% if @student.parent.nil? %> <%# Nuevo alumno no usa selected value para el parent%>
+    <div class="field">
+	  <%= form.label :Parent %>
+	  <%= select_tag "parent_id", options_from_collection_for_select(@parents, "id", "name")%>
+    </div>
+
+  <% else %> <%# Si es edicion usar selected value para el parent%>
+    <div class="field">
+      <%= form.label :Parent %>		  
+      <%= select_tag "parent_id", options_from_collection_for_select(@parents, "id", "name", @student.parent.id)%>
+    </div>
+
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

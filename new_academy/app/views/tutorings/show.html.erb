@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @tutoring.date.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @tutoring.start.strftime("%I:%M %p") %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @tutoring.end.strftime("%I:%M %p") %>
+</p>
+
+<p>
+  <strong>Tutor:</strong>
+  <%= @tutoring.tutor.name %>
+</p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @tutoring.student.name %>
+</p>
+
+<%= link_to 'Edit', edit_tutoring_path(@tutoring) %> |
+<%= link_to 'Back', tutorings_path %>

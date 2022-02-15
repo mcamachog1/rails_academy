@@ -1,0 +1,55 @@
+<%= form_with(model: tutoring) do |form| %>
+  <% if tutoring.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tutoring.errors.count, "error") %> prohibited this tutoring from being saved:</h2>
+
+      <ul>
+        <% tutoring.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.time_select :start %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end %>
+    <%= form.time_select :end %>
+  </div>
+
+
+  <% if @tutoring.student.nil? || @tutoring.tutor.nil? %> <%# Nueva tutoria no usa selected value%>
+    <div class="field">
+	  <%= form.label :Tutor %>
+	  <%= select_tag "tutor_id", options_from_collection_for_select(@tutors, "id", "name")%>
+    </div>
+	<div class="field">
+	  <%= form.label :Student %>
+	  <%= select_tag "student_id", options_from_collection_for_select(@students, "id", "name")%>
+    </div>
+  <% else %>
+    <div class="field">
+      <%= form.label :Tutor %>		  
+      <%= select_tag "tutor_id", options_from_collection_for_select(@tutors, "id", "name", @tutoring.tutor.id)%>
+    </div>
+	<div class="field">
+	  <%= form.label :Student %>  
+	  <%= select_tag "student_id", options_from_collection_for_select(@students, "id", "name", @tutoring.student.id)%>
+    </div>
+  <% end %>
+
+
+  <div class="actions">
+	  <br>
+    <%= form.submit %>
+  </div>
+<% end %>

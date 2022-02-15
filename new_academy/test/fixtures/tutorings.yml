@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2021-12-13
+  start: 2021-12-13 18:37:43
+  end: 2021-12-13 18:37:43
+  tutor: one
+  student: one
+
+two:
+  date: 2021-12-13
+  start: 2021-12-13 18:37:43
+  end: 2021-12-13 18:37:43
+  tutor: two
+  student: two

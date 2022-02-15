@@ -1,0 +1,45 @@
+<%= form_with(model: payment) do |form| %>
+  <% if payment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(payment.errors.count, "error") %> prohibited this payment from being saved:</h2>
+
+      <ul>
+        <% payment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount_usd %>
+    <%= form.text_field :amount_usd %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount_bs %>
+    <%= form.text_field :amount_bs %>
+  </div>
+
+  <% if @payment.parent.nil? %> <%# Nuevo pago no usa selected value%>
+    <div class="field">
+	  <%= form.label :Parent %>
+	  <%= select_tag :parent_id, options_from_collection_for_select(@parents, "id", "name")%>
+    </div>
+  <% else %> <%# Si es para editar se muestra el parent correspondiente al pago %>
+    <div class="field">
+      <%= form.label :Parent %>		  
+      <%= select_tag :parent_id, options_from_collection_for_select(@parents, "id", "name", @payment.parent.id)%>
+    </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
