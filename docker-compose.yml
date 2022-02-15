@@ -6,3 +6,9 @@ services:
       - "3000:3000" 
     volumes:
       - ./new_academy:/usr/src/app
+  database:
+   image: postgres
+   environment:
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: aresolver123
+     POSTGRES_DB: academy      
